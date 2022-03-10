@@ -45,11 +45,6 @@ async def start(_, message):
 
 @eliana.on_message(filters.command("help"))
 async def help_command(_, message):
-    help_text = """
-    **Eliana is a Truth&Dare Game which uses @elianacommunity's Elaina Api.**\n
-•/truth :for random truth 
-•/dare :for random dare  .
-"""
     self = await eliana.get_me()
     busername = self.username
 
@@ -60,8 +55,22 @@ async def help_command(_, message):
         await message.reply("Contact me in PM",
                             reply_markup=buttons)
     else:
-        buttons = [[InlineKeyboardButton("Managed by", url="https://t.me/Aura_Red"),
-                    InlineKeyboardButton('Elaina Api', url=f"https://elianaapi.herokuapp.com/")]]
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    "Managed by", url="https://t.me/Aura_Red"
+                ),
+                InlineKeyboardButton(
+                    'Elaina Api', url="https://elianaapi.herokuapp.com/"
+                ),
+            ]
+        ]
+
+        help_text = """
+    **Eliana is a Truth&Dare Game which uses @elianacommunity's Elaina Api.**\n
+•/truth :for random truth 
+•/dare :for random dare  .
+"""
         await message.reply_text(help_text, reply_markup=InlineKeyboardMarkup(buttons))
 
 @eliana.on_message(filters.command("truth"))
